@@ -39,6 +39,9 @@ SELECT dept_no
 FROM departments
 WHERE dept_name = 'Customer Service';
 
+
+
+
 # second, use the subquery in an outer query
 SELECT *
 FROM departments
@@ -47,6 +50,9 @@ WHERE dept_no = (
     FROM departments
     WHERE dept_name = 'Customer Service'
 );
+
+
+
 
 # department manager employee number of Sales department
 SELECT emp_no
@@ -57,6 +63,11 @@ WHERE dept_no IN (
     WHERE dept_name = 'Sales'
 )
   AND to_date > NOW();
+
+
+
+
+
 
 # === Can achieve same results as an inner join...
 # find first name and last of all department managers
@@ -74,6 +85,14 @@ WHERE emp_no IN (
 );
 
 # find employees with a current salary over 70k
+
+select concat(first_name, ' ', last_name) from employees
+where emp_no IN (
+    select emp_no from salaries where salary > 70000 and to_date > NOW()
+);
+
+
+
 
 # find the names of all current senior engineers
 
